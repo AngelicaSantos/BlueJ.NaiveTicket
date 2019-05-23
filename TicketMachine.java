@@ -1,4 +1,4 @@
-/**
+ /**
  * TicketMachine models a naive ticket machine that issues
  * flat-fare tickets.
  * The price of a ticket is specified via the constructor.
@@ -9,7 +9,7 @@
  * @author David J. Barnes and Michael Kolling
  * @version 2008.03.30
  */
-public class TicketMachine
+public class TicketMachine 
 {
     // The price of a ticket from this machine.
     private int price;
@@ -17,18 +17,35 @@ public class TicketMachine
     private int balance;
     // The total amount of money collected by this machine.
     private int total;
+    
+   private int score;
+   
+   private int empty;
+   
+   
 
     /**
      * Create a machine that issues tickets of the given price.
      * Note that the price must be greater than zero, and there
      * are no checks to ensure this.
      */
-    public TicketMachine(int ticketCost)
+    public TicketMachine()
     {
-        price = ticketCost;
+        price = 500;
         balance = 0;
         total = 0;
+        score =0;
     }
+    /**
+     * 
+     */
+    public TicketMachine(int price)
+    {
+        this.price=price;
+    }
+    
+    
+    
 
     /**
      * Return the price of a ticket.
@@ -36,6 +53,17 @@ public class TicketMachine
     public int getPrice()
     {
         return price;
+        
+        
+        
+    }
+    
+    /**
+     * Remove all money from the machine 
+     */
+    public void getEmpty()
+    {
+        total=0;
     }
 
     /**
@@ -46,7 +74,22 @@ public class TicketMachine
     {
         return balance;
     }
-
+/**
+ * Return the value of the total field 
+ */
+public int getTotal()
+{
+    return total;
+  
+    
+}
+/**
+ * Increase score by the given number of points.
+ */
+public void increase(int points)
+{
+    score = score + points;
+}
     /**
      * Receive an amount of money in cents from a customer.
      */
@@ -54,7 +97,13 @@ public class TicketMachine
     {
         balance = balance + amount;
     }
-
+    /**
+     * Reduce price by the given amount.
+     */
+public void discount(int amount)
+{
+   price=price - amount; 
+}
     /**
      * Print a ticket.
      * Update the total collected and
@@ -75,4 +124,20 @@ public class TicketMachine
         // Clear the balance.
         balance = 0;
     }
+    
+     public void setPrice (int ticketCost)
+     {
+         price=ticketCost;
+        }
+    public void prompt ()
+    {
+        System.out.println("please insert the correct amount of money");
+    }
+    public void showPrice ()
+    {
+        System.out.println("#" + price + "cents.");
+    }
+     
+  
+     
 }
